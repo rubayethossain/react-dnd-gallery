@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchImagesToMedia } from "redux/Media/media.thunk";
+import ImageDrag from "./ImageDrag";
 
 function ImagesList({ mediaImages, dispatch }) {
   useEffect(() => {
@@ -10,7 +11,7 @@ function ImagesList({ mediaImages, dispatch }) {
     <ul className="media-list">
       {mediaImages.map((media, key) => (
         <li key={key}>
-          <img src={media} alt="" className="list-image" />
+          <ImageDrag src={media} />
         </li>
       ))}
     </ul>

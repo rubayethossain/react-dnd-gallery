@@ -1,12 +1,16 @@
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import ImagesDropBox from "./ImagesDropBox";
 import ImagesList from "./ImagesList";
 
 function MediaLibrary() {
   return (
-    <section className="library">
-      <ImagesList />
-      <ImagesDropBox />
-    </section>
+    <DndProvider backend={HTML5Backend}>
+      <section className="library">
+        <ImagesList />
+        <ImagesDropBox />
+      </section>
+    </DndProvider>
   );
 }
 
