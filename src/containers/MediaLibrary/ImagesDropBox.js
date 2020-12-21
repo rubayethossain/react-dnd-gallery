@@ -2,6 +2,7 @@ import Image from "components/Image";
 import { useDrop } from "react-dnd";
 import { connect } from "react-redux";
 import { saveDroppedImages } from "redux/Media/media.action";
+import DroppedImage from "./DroppedImage";
 import { MediaDragTypes } from "./types";
 
 function ImagesDropBox({ droppedImages, uploadDroppedImage }) {
@@ -25,8 +26,8 @@ function ImagesDropBox({ droppedImages, uploadDroppedImage }) {
       ref={dropContainer}
       style={isOver ? { background: canDrop ? "#DCEDC8" : "#fff8e178" } : {}}
     >
-      {droppedImages.map((img, key) => (
-        <Image key={key} src={img.src} />
+      {droppedImages.map(({ src, id }, key) => (
+        <DroppedImage key={key} src={src} id={id} index={key} />
       ))}
     </div>
   );
