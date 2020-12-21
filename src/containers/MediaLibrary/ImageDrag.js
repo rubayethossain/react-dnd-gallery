@@ -2,11 +2,12 @@ import Image from "components/Image";
 import { useDrag } from "react-dnd";
 import { MediaDragTypes } from "./types";
 
-function ImageDrag({ src }) {
+function ImageDrag({ src, id }) {
   const [{ isDragging }, draggableImage] = useDrag({
     item: {
       type: MediaDragTypes.IMAGE,
       src,
+      id,
     },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),

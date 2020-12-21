@@ -11,7 +11,7 @@ function fetchImagesToMedia() {
     return fetchImages()
       .then((response) => response.json())
       .then((data) => {
-        const images = data.map((d) => d.img);
+        const images = data.map(({ char_id, img }) => ({ id: char_id, img }));
         dispatch(addImagesToMedia(images));
       });
   };

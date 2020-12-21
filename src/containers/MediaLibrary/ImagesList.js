@@ -9,9 +9,9 @@ function ImagesList({ mediaImages, dispatch }) {
   }, [dispatch]);
   return (
     <ul className="media-list">
-      {mediaImages.map((media, key) => (
+      {mediaImages.map(({ img, id }, key) => (
         <li key={key}>
-          <ImageDrag src={media} />
+          <ImageDrag src={img} id={id} />
         </li>
       ))}
     </ul>
