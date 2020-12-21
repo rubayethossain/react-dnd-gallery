@@ -5,11 +5,12 @@ import { saveDroppedImages } from "redux/Media/media.action";
 import { MediaDragTypes } from "./types";
 
 function ImagesDropBox({ droppedImages, uploadDroppedImage }) {
-  const [{ isOver }, dropContainer] = useDrop({
+  const [{ isOver, canDrop }, dropContainer] = useDrop({
     accept: MediaDragTypes.IMAGE,
     drop: (item) => uploadDroppedImage(item),
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
+      canDrop: !!monitor.canDrop(),
     }),
     canDrop: (item) => {
       // Check the selected image already exists in the gallery, cancel if exist
@@ -22,7 +23,7 @@ function ImagesDropBox({ droppedImages, uploadDroppedImage }) {
     <div
       className="image-container"
       ref={dropContainer}
-      style={isOver ? { background: "#333" } : {}}
+      style={isOver ? { background: canDrop ? "#DCEDC8" : "#fff8e178" } : {}}
     >
       {droppedImages.map((img, key) => (
         <Image key={key} src={img.src} />
