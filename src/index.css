@@ -90,4 +90,10 @@ table {
 	background-color: #fff;
 	margin: 50px;
 	border-radius: 8px;
+	padding: 10px 5px;
+	overflow-y: auto;
+}
+
+.image-container > .list-image{
+	margin: 5px;
 }

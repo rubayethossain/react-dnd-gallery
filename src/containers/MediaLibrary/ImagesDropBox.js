@@ -1,3 +1,4 @@
+import Image from "components/Image";
 import { useDrop } from "react-dnd";
 import { connect } from "react-redux";
 import { saveDroppedImages } from "redux/Media/media.action";
@@ -19,7 +20,7 @@ function ImagesDropBox({ droppedImages, uploadDroppedImage }) {
       style={isOver ? { background: "#333" } : {}}
     >
       {droppedImages.map((img, key) => (
-        <img key={key} src={img.src} alt="" style={{ width: 125 }} />
+        <Image key={key} src={img.src} />
       ))}
     </div>
   );
