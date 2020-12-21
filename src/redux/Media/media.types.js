@@ -1,1 +1,2 @@
-export const STORE_IMAGES = "STORE_IMAGES";
+export const IMAGES = "IMAGES";
+export const DROPPED_IMAGES = "DROPPED_IMAGES";
