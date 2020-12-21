@@ -1,7 +1,8 @@
-import { IMAGES } from "./media.types";
+import { IMAGES, DROPPED_IMAGES } from "./media.types";
 
 const INITIAL_MEDIAS = {
   images: [],
+  droppedImages: [],
 };
 
 const reducer = (state = INITIAL_MEDIAS, action) => {
@@ -10,6 +11,12 @@ const reducer = (state = INITIAL_MEDIAS, action) => {
       return {
         ...state,
         images: action.payload,
+      };
+
+    case DROPPED_IMAGES:
+      return {
+        ...state,
+        droppedImages: [...state.droppedImages, action.payload],
       };
 
     default:
