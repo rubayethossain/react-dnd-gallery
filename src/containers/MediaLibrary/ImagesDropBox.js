@@ -32,14 +32,7 @@ function ImagesDropBox({
       images.splice(dragIndex, 1);
       images.splice(hoverIndex, 0, dragCard);
 
-      console.log(images);
       reorderDroppedImages(images);
-      /* setCards(update(cards, {
-        $splice: [
-            [dragIndex, 1],
-            [hoverIndex, 0, dragCard],
-        ],
-    })); */
     },
     [droppedImages, reorderDroppedImages]
   );

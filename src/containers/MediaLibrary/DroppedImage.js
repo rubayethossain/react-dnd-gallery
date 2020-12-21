@@ -6,7 +6,7 @@ import Image from "components/Image";
 function DroppedImage({ src, id, index, moveImage }) {
   const ref = useRef(null);
   const [, drop] = useDrop({
-    accept: MediaDragTypes.IMAGE,
+    accept: MediaDragTypes.DROP_IMAGE,
     hover(item, monitor) {
       if (!ref.current) {
         return;
@@ -58,7 +58,7 @@ function DroppedImage({ src, id, index, moveImage }) {
     },
   });
   const [{ isDragging }, drag] = useDrag({
-    item: { type: MediaDragTypes.IMAGE, id, index },
+    item: { type: MediaDragTypes.DROP_IMAGE, id, index },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
