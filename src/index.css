@@ -86,7 +86,7 @@ table {
 
 .image-container{
 	flex: 1;
-	height: calc(inherit - 100px);
+	height: calc(100vh - 120px);
 	background-color: #fff;
 	margin: 50px;
 	border-radius: 8px;
@@ -94,6 +94,7 @@ table {
 	overflow-y: auto;
 	display: flex;
 	flex-wrap: wrap;
+	align-content: flex-start;
 }
 
 .image-container > .list-image{

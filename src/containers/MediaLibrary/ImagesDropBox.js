@@ -11,6 +11,11 @@ function ImagesDropBox({ droppedImages, uploadDroppedImage }) {
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
     }),
+    canDrop: (item) => {
+      // Check the selected image already exists in the gallery, cancel if exist
+      const isExistingImage = droppedImages.find((img) => img.id === item.id);
+      return !isExistingImage;
+    },
   });
 
   return (
