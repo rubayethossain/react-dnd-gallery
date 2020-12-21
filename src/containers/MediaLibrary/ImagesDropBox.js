@@ -1,11 +1,15 @@
-import Image from "components/Image";
+import { useCallback } from "react";
 import { useDrop } from "react-dnd";
 import { connect } from "react-redux";
-import { saveDroppedImages } from "redux/Media/media.action";
+import { saveDroppedImages, sortDroppedImages } from "redux/Media/media.action";
 import DroppedImage from "./DroppedImage";
 import { MediaDragTypes } from "./types";
 
-function ImagesDropBox({ droppedImages, uploadDroppedImage }) {
+function ImagesDropBox({
+  droppedImages,
+  uploadDroppedImage,
+  reorderDroppedImages,
+}) {
   const [{ isOver, canDrop }, dropContainer] = useDrop({
     accept: MediaDragTypes.IMAGE,
     drop: (item) => uploadDroppedImage(item),
@@ -20,14 +24,40 @@ function ImagesDropBox({ droppedImages, uploadDroppedImage }) {
     },
   });
 
+  const moveImage = useCallback(
+    (dragIndex, hoverIndex) => {
+      const dragCard = droppedImages[dragIndex];
+      const images = [...droppedImages];
+
+      images.splice(dragIndex, 1);
+      images.splice(hoverIndex, 0, dragCard);
+
+      console.log(images);
+      reorderDroppedImages(images);
+      /* setCards(update(cards, {
+        $splice: [
+            [dragIndex, 1],
+            [hoverIndex, 0, dragCard],
+        ],
+    })); */
+    },
+    [droppedImages, reorderDroppedImages]
+  );
+
   return (
     <div
       className="image-container"
       ref={dropContainer}
       style={isOver ? { background: canDrop ? "#DCEDC8" : "#fff8e178" } : {}}
     >
-      {droppedImages.map(({ src, id }, key) => (
-        <DroppedImage key={key} src={src} id={id} index={key} />
+      {droppedImages.map((img, key) => (
+        <DroppedImage
+          key={key}
+          src={img.src}
+          id={img.id}
+          index={key}
+          moveImage={moveImage}
+        />
       ))}
     </div>
   );
@@ -42,6 +72,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     uploadDroppedImage: (image) => dispatch(saveDroppedImages(image)),
+    reorderDroppedImages: (images) => dispatch(sortDroppedImages(images)),
   };
 }
 
