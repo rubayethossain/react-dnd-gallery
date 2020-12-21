@@ -92,6 +92,8 @@ table {
 	border-radius: 8px;
 	padding: 10px 5px;
 	overflow-y: auto;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .image-container > .list-image{
