@@ -2,9 +2,12 @@ import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { MediaDragTypes } from "./types";
 import Image from "components/Image";
+import { cogIcon, trashIcon } from "assets/images";
+import SwitchBoard from "components/SwitchBoard";
 
 function DroppedImage({ src, id, index, moveImage }) {
   const ref = useRef(null);
+
   const [, drop] = useDrop({
     accept: MediaDragTypes.DROP_IMAGE,
     hover(item, monitor) {
@@ -57,20 +60,41 @@ function DroppedImage({ src, id, index, moveImage }) {
       item.index = hoverIndex;
     },
   });
-  const [{ isDragging }, drag] = useDrag({
+
+  const [, /*{ isDragging }*/ drag] = useDrag({
     item: { type: MediaDragTypes.DROP_IMAGE, id, index },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
   });
 
-  const opacity = isDragging ? 0 : 1;
+  // const opacity = isDragging ? 0 : 1;
 
   drag(drop(ref));
+
+  const hoverActions = (
+    <SwitchBoard
+      items={[
+        {
+          icon: cogIcon,
+          type: "content",
+          content: "Image Replace or Filter Tab",
+          action: null,
+        },
+        {
+          icon: trashIcon,
+          type: "button",
+          content: null,
+          action: () => {},
+        },
+      ]}
+    />
+  );
 
   return (
     <div ref={ref}>
       <Image src={src} />
+      {hoverActions}
     </div>
   );
 }
