@@ -1,11 +1,15 @@
 import "./switchboard.styles.css";
 import { cogIcon, trashIcon } from "assets/images";
+import { useState } from "react";
 
 function SwitchPane({ children }) {
   return <div className="switch-pane">{children}</div>;
 }
 
-function SwitchBoard(props) {
+function SwitchBoard({ items = [] }) {
+  const [activeSwitchIndex, setActiveSwitchIndex] = useState(null);
+  const [showPane, togglePane] = useState(false);
+
   return (
     <div className="switch-board">
       <ul className="switch-list">
@@ -17,7 +21,7 @@ function SwitchBoard(props) {
         </li>
       </ul>
 
-      <SwitchPane />
+      {showPane && <SwitchPane>{items[activeSwitchIndex]}</SwitchPane>}
     </div>
   );
 }
