@@ -8,6 +8,8 @@
     border-radius: 20px;
     padding: 6px 0;
     list-style: none;
+    width: fit-content;
+    margin-bottom: 10px;
 }
 .switch-list-item{
     padding: 3px 18px;
@@ -26,6 +28,18 @@
     border-radius: 20px;
 }
 
+.switch-list-item:last-child::after{
+    content: none;
+}
+
 .switch-list-item > img{
     width: 16px;
+}
+
+.switch-pane{
+    background-color: #fff;
+    width: 265px;
+    box-shadow: 0px 14px 40px rgba(15, 44, 71, 0.3);
+    border-radius: 8px;
+    padding: 20px;
 }
