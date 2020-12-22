@@ -1,7 +1,9 @@
 import { cogIcon, trashIcon } from "assets/images";
 import SwitchBoard from "components/SwitchBoard";
+import { connect } from "react-redux";
+import { deleteDroppedImage } from "redux/Media/media.action";
 
-function ImageSettings({ data }) {
+function ImageSettings({ data, removeImage }) {
   return (
     <div className="dropped-image-switch">
       <SwitchBoard
@@ -18,7 +20,7 @@ function ImageSettings({ data }) {
             icon: trashIcon,
             type: "button",
             content: null,
-            action: () => {},
+            action: () => removeImage(data.id),
           },
         ]}
       />
@@ -26,4 +28,10 @@ function ImageSettings({ data }) {
   );
 }
 
-export default ImageSettings;
+function mapDispatchToProps(dispatch) {
+  return {
+    removeImage: (imgId) => dispatch(deleteDroppedImage(imgId)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(ImageSettings);
