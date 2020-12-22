@@ -1,28 +1,35 @@
+import { useState } from "react";
 import "./tabs.styles.css";
 
-function Tabs({ items }) {
+/* 
+    items is an array of objects.
+    The object shape is below,
+    {
+        title: "Image",
+        content: anything
+    }
+*/
+
+function Tabs({ items = [] }) {
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
+
+  if (Array.isArray(items) && !items.length) return null;
+
   return (
     <div className="tabs">
       <ul className="tab-list">
-        <li className="tab-item active">Image</li>
-        <li className="tab-item">Filter</li>
+        {items.map((tab, index) => (
+          <li
+            className={`tab-item ${activeTabIndex === index ? "active" : ""}`}
+            onClick={setActiveTabIndex.bind(null, index)}
+            key={index}
+          >
+            {tab.title}
+          </li>
+        ))}
       </ul>
 
-      <div className="tab-contents">
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam
-          temporibus magni non repellendus deserunt ab ipsum quisquam nostrum
-          tempore quibusdam? Est magnam enim, totam aliquam deserunt error eius
-          facilis obcaecati asperiores ut illo porro?
-        </p>
-
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam
-          temporibus magni non repellendus deserunt ab ipsum quisquam nostrum
-          tempore quibusdam? Est magnam enim, totam aliquam deserunt error eius
-          facilis obcaecati asperiores ut illo porro?
-        </p>
-      </div>
+      <div className="tab-contents">{items[activeTabIndex].content}</div>
     </div>
   );
 }

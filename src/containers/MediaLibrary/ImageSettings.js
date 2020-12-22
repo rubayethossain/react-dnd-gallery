@@ -1,7 +1,19 @@
 import { cogIcon, trashIcon } from "assets/images";
 import SwitchBoard from "components/SwitchBoard";
+import Tabs from "components/Tabs";
 import { connect } from "react-redux";
 import { deleteDroppedImage } from "redux/Media/media.action";
+
+const initItems = [
+  {
+    title: "Image",
+    content: "Image Tab",
+  },
+  {
+    title: "Filter",
+    content: "Filter Tab",
+  },
+];
 
 function ImageSettings({ data, removeImage }) {
   return (
@@ -11,9 +23,7 @@ function ImageSettings({ data, removeImage }) {
           {
             icon: cogIcon,
             type: "content",
-            content: (
-              <button onClick={() => console.log("Hit")}>Change Image</button>
-            ),
+            content: <Tabs items={initItems} />,
             action: null,
           },
           {
