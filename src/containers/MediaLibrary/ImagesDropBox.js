@@ -1,3 +1,4 @@
+import Tabs from "components/Tabs";
 import { useCallback } from "react";
 import { useDrop } from "react-dnd";
 import { connect } from "react-redux";
@@ -52,6 +53,8 @@ function ImagesDropBox({
           moveImage={moveImage}
         />
       ))}
+
+      <Tabs />
     </div>
   );
 }

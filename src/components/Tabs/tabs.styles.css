@@ -1,0 +1,21 @@
+.tabs{}
+.tab-list{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #A1A6AA;
+    padding-bottom: 12px;
+}
+.tab-item{
+    margin: 0 15px;
+    color: #A1A6AA;
+    cursor: pointer;
+}
+.tab-item.active, .tab-item:hover{
+    color: #4A5257;
+}
+.tab-contents{
+    padding: 10px 0;
+}
