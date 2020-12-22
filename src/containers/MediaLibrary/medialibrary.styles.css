@@ -38,3 +38,14 @@
 .image-container > .list-image{
 	margin: 5px;
 }
+
+.dropped-img-wrapper{
+    position: relative;
+}
+
+.dropped-image-switch{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 9;
+}

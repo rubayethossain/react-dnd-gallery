@@ -1,11 +1,11 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { MediaDragTypes } from "./types";
 import Image from "components/Image";
-import { cogIcon, trashIcon } from "assets/images";
-import SwitchBoard from "components/SwitchBoard";
+import ImageSettings from "./ImageSettings";
 
 function DroppedImage({ src, id, index, moveImage }) {
+  const [showSetting, toggleSettingsDisplay] = useState(false);
   const ref = useRef(null);
 
   const [, drop] = useDrop({
@@ -72,29 +72,15 @@ function DroppedImage({ src, id, index, moveImage }) {
 
   drag(drop(ref));
 
-  const hoverActions = (
-    <SwitchBoard
-      items={[
-        {
-          icon: cogIcon,
-          type: "content",
-          content: "Image Replace or Filter Tab",
-          action: null,
-        },
-        {
-          icon: trashIcon,
-          type: "button",
-          content: null,
-          action: () => {},
-        },
-      ]}
-    />
-  );
-
   return (
-    <div ref={ref}>
+    <div
+      ref={ref}
+      className="dropped-img-wrapper"
+      onMouseEnter={toggleSettingsDisplay.bind(null, true)}
+      onMouseLeave={toggleSettingsDisplay.bind(null, false)}
+    >
       <Image src={src} />
-      {hoverActions}
+      {showSetting && <ImageSettings data={{ src, id }} />}
     </div>
   );
 }
