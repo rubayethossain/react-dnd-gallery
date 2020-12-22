@@ -1,4 +1,10 @@
-import { IMAGES, DROPPED_IMAGES, SORT_IMAGES } from "./media.types";
+import { act } from "@testing-library/react";
+import {
+  IMAGES,
+  DROPPED_IMAGES,
+  SORT_IMAGES,
+  DEL_DROP_IMAGE,
+} from "./media.types";
 
 const INITIAL_MEDIAS = {
   images: [],
@@ -23,6 +29,15 @@ const reducer = (state = INITIAL_MEDIAS, action) => {
       return {
         ...state,
         droppedImages: action.payload,
+      };
+
+    case DEL_DROP_IMAGE:
+      const filteredDroppedImages = state.droppedImages.filter(
+        (img) => img.id !== action.payload
+      );
+      return {
+        ...state,
+        droppedImages: filteredDroppedImages,
       };
 
     default:

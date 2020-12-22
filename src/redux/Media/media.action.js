@@ -1,4 +1,9 @@
-import { IMAGES, DROPPED_IMAGES, SORT_IMAGES } from "./media.types";
+import {
+  IMAGES,
+  DROPPED_IMAGES,
+  SORT_IMAGES,
+  DEL_DROP_IMAGE,
+} from "./media.types";
 
 // Add images to media.
 export const addImagesToMedia = (images) => ({
@@ -15,4 +20,9 @@ export const saveDroppedImages = (image) => ({
 export const sortDroppedImages = (images) => ({
   type: SORT_IMAGES,
   payload: images,
+});
+
+export const deleteDroppedImage = (imgId) => ({
+  type: DEL_DROP_IMAGE,
+  payload: imgId,
 });
