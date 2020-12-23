@@ -4,7 +4,7 @@ import { MediaDragTypes } from "./types";
 import Image from "components/Image";
 import ImageSettings from "./ImageSettings";
 
-function DroppedImage({ src, id, index, moveImage }) {
+function DroppedImage({ imgData, index, moveImage }) {
   const [showSetting, toggleSettingsDisplay] = useState(false);
   const ref = useRef(null);
 
@@ -62,7 +62,7 @@ function DroppedImage({ src, id, index, moveImage }) {
   });
 
   const [, /*{ isDragging }*/ drag] = useDrag({
-    item: { type: MediaDragTypes.DROP_IMAGE, id, index },
+    item: { type: MediaDragTypes.DROP_IMAGE, id: imgData.id, index },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
@@ -79,8 +79,8 @@ function DroppedImage({ src, id, index, moveImage }) {
       onMouseEnter={toggleSettingsDisplay.bind(null, true)}
       onMouseLeave={toggleSettingsDisplay.bind(null, false)}
     >
-      <Image src={src} />
-      {showSetting && <ImageSettings data={{ src, id }} />}
+      <Image src={imgData.src} />
+      {showSetting && <ImageSettings data={imgData} />}
     </div>
   );
 }

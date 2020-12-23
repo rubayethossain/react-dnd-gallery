@@ -8,6 +8,10 @@ function ImageDrag({ src, id }) {
       type: MediaDragTypes.IMAGE,
       src,
       id,
+      invert: 0,
+      opacity: 0,
+      brightness: 0,
+      contrast: 0,
     },
     collect: (monitor) => ({
       isDragging: !!monitor.isDragging(),

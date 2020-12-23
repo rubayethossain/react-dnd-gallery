@@ -47,8 +47,7 @@ function ImagesDropBox({
       {droppedImages.map((img, key) => (
         <DroppedImage
           key={key}
-          src={img.src}
-          id={img.id}
+          imgData={img}
           index={key}
           moveImage={moveImage}
         />
