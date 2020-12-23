@@ -29,10 +29,25 @@ function ImageSettings({ data, removeImage }) {
 
   const imageFilter = (
     <Fragment>
-      <FilterItem className="mb-30" icon={invertIcon} name="invert" />
-      <FilterItem className="mb-30" icon={opacityIcon} name="opacity" />
-      <FilterItem className="mb-30" icon={brightnessIcon} name="brightness" />
-      <FilterItem icon={contrastIcon} name="contrast" />
+      <FilterItem
+        className="mb-30"
+        icon={invertIcon}
+        name="invert"
+        unit="dmp"
+      />
+      <FilterItem
+        className="mb-30"
+        icon={opacityIcon}
+        name="opacity"
+        unit="%"
+      />
+      <FilterItem
+        className="mb-30"
+        icon={brightnessIcon}
+        name="brightness"
+        unit="%"
+      />
+      <FilterItem icon={contrastIcon} name="contrast" unit="%" />
     </Fragment>
   );
 

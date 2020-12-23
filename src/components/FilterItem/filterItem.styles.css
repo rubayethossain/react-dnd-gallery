@@ -15,14 +15,9 @@
     height: 8px;
     background: #A1A6AA;
     outline: none;
-    opacity: 0.7;
     -webkit-transition: .2s;
     transition: opacity .2s;
     border-radius: 10px;
-}
-
-.range-slider:hover {
-    opacity: 1;
 }
   
 .range-slider::-webkit-slider-thumb {
