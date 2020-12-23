@@ -1,4 +1,12 @@
-import { cogIcon, trashIcon } from "assets/images";
+import {
+  brightnessIcon,
+  cogIcon,
+  contrastIcon,
+  invertIcon,
+  opacityIcon,
+  trashIcon,
+} from "assets/images";
+import FilterItem from "components/FilterItem";
 import SwitchBoard from "components/SwitchBoard";
 import Tabs from "components/Tabs";
 import { Fragment } from "react";
@@ -18,6 +26,16 @@ function ImageSettings({ data, removeImage }) {
       </h3>
     </Fragment>
   );
+
+  const imageFilter = (
+    <Fragment>
+      <FilterItem className="mb-30" icon={invertIcon} name="invert" />
+      <FilterItem className="mb-30" icon={opacityIcon} name="opacity" />
+      <FilterItem className="mb-30" icon={brightnessIcon} name="brightness" />
+      <FilterItem icon={contrastIcon} name="contrast" />
+    </Fragment>
+  );
+
   const initItems = [
     {
       title: "Image",
@@ -25,7 +43,7 @@ function ImageSettings({ data, removeImage }) {
     },
     {
       title: "Filter",
-      content: "Filter Tab",
+      content: imageFilter,
     },
   ];
 
