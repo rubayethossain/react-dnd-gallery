@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { MediaDragTypes } from "./types";
 import Image from "components/Image";
@@ -6,7 +6,21 @@ import ImageSettings from "./ImageSettings";
 
 function DroppedImage({ imgData, index, moveImage }) {
   const [showSetting, toggleSettingsDisplay] = useState(false);
+  const [invert, setInvert] = useState(0);
+  const [opacity, setOpacity] = useState(0);
+  const [brightness, setBrightness] = useState(0);
+  const [contrast, setContrast] = useState(0);
+
   const ref = useRef(null);
+
+  useEffect(() => {
+    const { invert, opacity, brightness, contrast } = imgData;
+
+    if (invert) setInvert(invert);
+    if (opacity) setOpacity(opacity);
+    if (brightness) setBrightness(brightness);
+    if (contrast) setContrast(contrast);
+  }, [imgData]);
 
   const [, drop] = useDrop({
     accept: MediaDragTypes.DROP_IMAGE,
@@ -72,6 +86,29 @@ function DroppedImage({ imgData, index, moveImage }) {
 
   drag(drop(ref));
 
+  const setImageFilter = (filter, value) => {
+    switch (filter) {
+      case "invert":
+        setInvert(value);
+        break;
+
+      case "opacity":
+        setOpacity(value);
+        break;
+
+      case "brightness":
+        setBrightness(value);
+        break;
+
+      case "contrast":
+        setContrast(value);
+        break;
+
+      default:
+        return;
+    }
+  };
+
   return (
     <div
       ref={ref}
@@ -81,12 +118,18 @@ function DroppedImage({ imgData, index, moveImage }) {
     >
       <Image
         src={imgData.src}
-        invert={imgData.invert}
-        opacity={imgData.opacity}
-        brightness={imgData.brightness}
-        contrast={imgData.contrast}
+        invert={invert}
+        opacity={opacity}
+        brightness={brightness}
+        contrast={contrast}
       />
-      {showSetting && <ImageSettings data={imgData} />}
+      {showSetting && (
+        <ImageSettings
+          data={imgData}
+          filter={{ invert, opacity, brightness, contrast }}
+          setFilter={setImageFilter}
+        />
+      )}
     </div>
   );
 }

@@ -1,10 +1,11 @@
 import { forwardRef, useMemo } from "react";
 
-const calOpacity = (opacity) => (opacity === 0 ? 1 : opacity / 100);
+const calOpacity = (opacity) =>
+  opacity === 0 ? 1 : parseInt(opacity, 10) / 100;
 
-const calBrightness = (brightness) => brightness / 100 + 1;
+const calBrightness = (brightness) => parseInt(brightness, 10) / 100 + 1;
 
-const calContrast = (contrast) => 100 + contrast;
+const calContrast = (contrast) => 100 + parseInt(contrast, 10);
 
 const Image = forwardRef((props, ref) => {
   const { invert, opacity, brightness, contrast } = props;

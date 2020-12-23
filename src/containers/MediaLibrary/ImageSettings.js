@@ -13,7 +13,7 @@ import { Fragment } from "react";
 import { connect } from "react-redux";
 import { deleteDroppedImage } from "redux/Media/media.action";
 
-function ImageSettings({ data, removeImage }) {
+function ImageSettings({ data, removeImage, setFilter, filter }) {
   const changeImage = (
     <Fragment>
       <img src={data.src} alt="" className="preview-image" />
@@ -34,20 +34,32 @@ function ImageSettings({ data, removeImage }) {
         icon={invertIcon}
         name="invert"
         unit="dmp"
+        onChange={(val) => setFilter("invert", val)}
+        range={filter.invert}
       />
       <FilterItem
         className="mb-30"
         icon={opacityIcon}
         name="opacity"
         unit="%"
+        onChange={(val) => setFilter("opacity", val)}
+        range={filter.opacity}
       />
       <FilterItem
         className="mb-30"
         icon={brightnessIcon}
         name="brightness"
         unit="%"
+        onChange={(val) => setFilter("brightness", val)}
+        range={filter.brightness}
       />
-      <FilterItem icon={contrastIcon} name="contrast" unit="%" />
+      <FilterItem
+        icon={contrastIcon}
+        name="contrast"
+        unit="%"
+        onChange={(val) => setFilter("contrast", val)}
+        range={filter.contrast}
+      />
     </Fragment>
   );
 
