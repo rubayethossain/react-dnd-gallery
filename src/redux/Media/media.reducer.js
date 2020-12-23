@@ -3,6 +3,7 @@ import {
   DROPPED_IMAGES,
   SORT_IMAGES,
   DEL_DROP_IMAGE,
+  SET_FILTER,
 } from "./media.types";
 
 const INITIAL_MEDIAS = {
@@ -37,6 +38,32 @@ const reducer = (state = INITIAL_MEDIAS, action) => {
       return {
         ...state,
         droppedImages: filteredDroppedImages,
+      };
+
+    case SET_FILTER:
+      const { payload, filter } = action;
+
+      const imgIndex = state.droppedImages.findIndex(
+        (img) => img.id === payload
+      );
+
+      if (imgIndex < 0) return state;
+
+      const imgWithFilter = {
+        ...state.droppedImages[imgIndex],
+        invert: filter.invert || 0,
+        opacity: filter.opacity || 0,
+        brightness: filter.brightness || 0,
+        contrast: filter.contrast || 0,
+      };
+
+      const updatedDroppedImages = [...state.droppedImages];
+
+      updatedDroppedImages.splice(imgIndex, 1, imgWithFilter);
+
+      return {
+        ...state,
+        droppedImages: updatedDroppedImages,
       };
 
     default:
