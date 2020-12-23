@@ -3,8 +3,10 @@ import { useDrag, useDrop } from "react-dnd";
 import { MediaDragTypes } from "./types";
 import Image from "components/Image";
 import ImageSettings from "./ImageSettings";
+import { connect } from "react-redux";
+import { applyFilterToDroppedImage } from "redux/Media/media.action";
 
-function DroppedImage({ imgData, index, moveImage }) {
+function DroppedImage({ imgData, index, moveImage, saveImageFilter }) {
   const [showSetting, toggleSettingsDisplay] = useState(false);
   const [invert, setInvert] = useState(0);
   const [opacity, setOpacity] = useState(0);
@@ -109,12 +111,25 @@ function DroppedImage({ imgData, index, moveImage }) {
     }
   };
 
+  const onMouseLeave = () => {
+    toggleSettingsDisplay(false);
+
+    /*
+    Storing image filter to redux when mouse leave or hover out.
+    Would be a costly transactions to do it when filter is applied on a image, 
+    thus saving it later. Although if user refresh the browser when applying filter
+    on the image the filter data will not be saved but this is an edge case and can 
+    ignore for this project. 
+    */
+    saveImageFilter(imgData.id, { invert, opacity, brightness, contrast });
+  };
+
   return (
     <div
       ref={ref}
       className="dropped-img-wrapper"
       onMouseEnter={toggleSettingsDisplay.bind(null, true)}
-      onMouseLeave={toggleSettingsDisplay.bind(null, false)}
+      onMouseLeave={onMouseLeave}
     >
       <Image
         src={imgData.src}
@@ -134,4 +149,11 @@ function DroppedImage({ imgData, index, moveImage }) {
   );
 }
 
-export default DroppedImage;
+function mapDispatchToProps(dispatch) {
+  return {
+    saveImageFilter: (imgId, filter) =>
+      dispatch(applyFilterToDroppedImage(imgId, filter)),
+  };
+}
+
+export default connect(null, mapDispatchToProps)(DroppedImage);
