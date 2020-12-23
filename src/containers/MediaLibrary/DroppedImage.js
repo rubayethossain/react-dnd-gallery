@@ -79,7 +79,13 @@ function DroppedImage({ imgData, index, moveImage }) {
       onMouseEnter={toggleSettingsDisplay.bind(null, true)}
       onMouseLeave={toggleSettingsDisplay.bind(null, false)}
     >
-      <Image src={imgData.src} />
+      <Image
+        src={imgData.src}
+        invert={imgData.invert}
+        opacity={imgData.opacity}
+        brightness={imgData.brightness}
+        contrast={imgData.contrast}
+      />
       {showSetting && <ImageSettings data={imgData} />}
     </div>
   );
