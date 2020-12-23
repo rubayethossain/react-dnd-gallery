@@ -49,3 +49,16 @@
     left: 20px;
     z-index: 9;
 }
+
+.preview-image{
+	max-width: 150px;
+	display: block;
+	margin: 0 auto;
+}
+
+.change-photo-btn{
+	text-align: center;
+	margin-top: 18px;
+	color: #35AEF2;
+	cursor: pointer;
+}

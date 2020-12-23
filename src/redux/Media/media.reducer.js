@@ -1,4 +1,3 @@
-import { act } from "@testing-library/react";
 import {
   IMAGES,
   DROPPED_IMAGES,

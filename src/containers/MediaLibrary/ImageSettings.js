@@ -1,21 +1,34 @@
 import { cogIcon, trashIcon } from "assets/images";
 import SwitchBoard from "components/SwitchBoard";
 import Tabs from "components/Tabs";
+import { Fragment } from "react";
 import { connect } from "react-redux";
 import { deleteDroppedImage } from "redux/Media/media.action";
 
-const initItems = [
-  {
-    title: "Image",
-    content: "Image Tab",
-  },
-  {
-    title: "Filter",
-    content: "Filter Tab",
-  },
-];
-
 function ImageSettings({ data, removeImage }) {
+  const changeImage = (
+    <Fragment>
+      <img src={data.src} alt="" className="preview-image" />
+      <h3
+        type="button"
+        className="change-photo-btn"
+        onClick={() => console.log("Change photo")}
+      >
+        Change Photo
+      </h3>
+    </Fragment>
+  );
+  const initItems = [
+    {
+      title: "Image",
+      content: changeImage,
+    },
+    {
+      title: "Filter",
+      content: "Filter Tab",
+    },
+  ];
+
   return (
     <div className="dropped-image-switch">
       <SwitchBoard
