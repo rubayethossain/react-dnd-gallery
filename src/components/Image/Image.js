@@ -1,7 +1,6 @@
 import { forwardRef, useMemo } from "react";
 
-const calOpacity = (opacity) =>
-  opacity === 0 ? 1 : parseInt(opacity, 10) / 100;
+const calOpacity = (opacity) => 1 - parseInt(opacity, 10) / 100;
 
 const calBrightness = (brightness) => parseInt(brightness, 10) / 100 + 1;
 
