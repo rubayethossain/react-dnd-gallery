@@ -33,6 +33,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	align-content: flex-start;
+	position: relative;
 }
 
 .image-container > .list-image{
@@ -69,4 +70,31 @@
 	line-height: 23px;
 	color: #4A5257;
 	padding: 20px;
+}
+
+.drop-message {
+    text-align: center;
+    border: 2px dashed #DDE2E8;
+	min-height: 366px;
+	min-width: 550px;
+	border-radius: 8px;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+	align-items: center;
+	margin: 0 auto;
+	position: absolute;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.drop-message > img {
+	width: 100px;
+	margin-bottom: 35px;
+}
+
+.drop-message > p{
+	color: #4A5257;
+	font-size: 18px;
 }

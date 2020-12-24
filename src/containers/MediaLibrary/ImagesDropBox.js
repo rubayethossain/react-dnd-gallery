@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { saveDroppedImages, sortDroppedImages } from "redux/Media/media.action";
 import DroppedImage from "./DroppedImage";
 import { MediaDragTypes } from "./types";
+import { folderIcon } from "assets/images";
 
 function ImagesDropBox({
   droppedImages,
@@ -38,12 +39,20 @@ function ImagesDropBox({
     [droppedImages, reorderDroppedImages]
   );
 
+  const message = (
+    <div className="drop-message">
+      <img src={folderIcon} alt="" />
+      <p>Drop an image from Media Panel</p>
+    </div>
+  );
+
   return (
     <div
       className="image-container"
       ref={dropContainer}
       style={isOver ? { background: canDrop ? "#DCEDC8" : "#fff8e178" } : {}}
     >
+      {Array.isArray(droppedImages) && !droppedImages.length && message}
       {droppedImages.map((img, key) => (
         <DroppedImage
           key={key}
