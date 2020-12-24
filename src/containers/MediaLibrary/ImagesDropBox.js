@@ -1,17 +1,20 @@
 import Tabs from "components/Tabs";
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
 import { useDrop } from "react-dnd";
 import { connect } from "react-redux";
 import { saveDroppedImages, sortDroppedImages } from "redux/Media/media.action";
 import DroppedImage from "./DroppedImage";
 import { MediaDragTypes } from "./types";
 import { folderIcon } from "assets/images";
+import ChangePhotoContext from "./context/ChangePhotoContext";
 
 function ImagesDropBox({
   droppedImages,
   uploadDroppedImage,
   reorderDroppedImages,
 }) {
+  const { changePhoto } = useContext(ChangePhotoContext);
+
   const [{ isOver, canDrop }, dropContainer] = useDrop({
     accept: MediaDragTypes.IMAGE,
     drop: (item) => uploadDroppedImage(item),
@@ -48,7 +51,7 @@ function ImagesDropBox({
 
   return (
     <div
-      className="image-container"
+      className={`image-container ${changePhoto ? "has-overlay" : ""}`}
       ref={dropContainer}
       style={isOver ? { background: canDrop ? "#DCEDC8" : "#fff8e178" } : {}}
     >

@@ -39,6 +39,17 @@
 	position: relative;
 }
 
+.image-container.has-overlay::after{
+	position: absolute;
+	content: "";
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #000;
+	opacity: 0.5;
+}
+
 .image-container > .list-image{
 	margin: 5px;
 }
