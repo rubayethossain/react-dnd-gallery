@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchImagesToMedia } from "redux/Media/media.thunk";
 import ImageDrag from "./ImageDrag";
@@ -8,13 +8,16 @@ function ImagesList({ mediaImages, dispatch }) {
     dispatch(fetchImagesToMedia());
   }, [dispatch]);
   return (
-    <ul className="media-list">
-      {mediaImages.map(({ img, id }, key) => (
-        <li key={key}>
-          <ImageDrag src={img} id={id} />
-        </li>
-      ))}
-    </ul>
+    <div style={{ backgroundColor: "#fff" }}>
+      <p className="list-title">Media Panel</p>
+      <ul className="media-list">
+        {mediaImages.map(({ img, id }, key) => (
+          <li key={key}>
+            <ImageDrag src={img} id={id} />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
