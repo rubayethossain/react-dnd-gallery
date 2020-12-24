@@ -106,3 +106,16 @@
 .selected-image{
 	border: 2px solid #35AEF2;
 }
+
+
+.change-toolbox {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

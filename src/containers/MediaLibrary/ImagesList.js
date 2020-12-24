@@ -22,8 +22,17 @@ function ImagesList({ mediaImages, dispatch }) {
     }
   };
 
+  const changePhotoToolbox = (
+    <div className="change-toolbox">
+      <button type="button">Confirm</button>
+      <button type="button" onClick={() => setChangePhoto(null)}>
+        Cancel
+      </button>
+    </div>
+  );
+
   return (
-    <div style={{ backgroundColor: "#fff" }}>
+    <div style={{ backgroundColor: "#fff", position: "relative" }}>
       <p className="list-title">Media Panel</p>
       <ul className="media-list">
         {mediaImages.map(({ img, id }, key) => (
@@ -36,6 +45,7 @@ function ImagesList({ mediaImages, dispatch }) {
           </li>
         ))}
       </ul>
+      {changePhoto && changePhotoToolbox}
     </div>
   );
 }
