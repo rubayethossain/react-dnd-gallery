@@ -1,3 +1,5 @@
 import { createContext } from "react";
 
-export default ChangePhotoContext = createContext();
+const ChangePhotoContext = createContext();
+
+export default ChangePhotoContext;

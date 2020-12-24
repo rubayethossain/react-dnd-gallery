@@ -9,18 +9,21 @@ import {
 import FilterItem from "components/FilterItem";
 import SwitchBoard from "components/SwitchBoard";
 import Tabs from "components/Tabs";
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { connect } from "react-redux";
 import { deleteDroppedImage } from "redux/Media/media.action";
+import ChangePhotoContext from "./context/ChangePhotoContext";
 
 function ImageSettings({ data, removeImage, setFilter, filter }) {
+  const { setChangePhoto } = useContext(ChangePhotoContext);
+
   const changeImage = (
     <Fragment>
       <img src={data.src} alt="" className="preview-image" />
       <h3
         type="button"
         className="change-photo-btn"
-        onClick={() => console.log("Change photo")}
+        onClick={() => setChangePhoto(data)}
       >
         Change Photo
       </h3>
