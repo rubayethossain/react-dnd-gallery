@@ -41,7 +41,8 @@
 }
 
 .dropped-img-wrapper{
-    position: relative;
+	position: relative;
+	margin: 10px;
 }
 
 .dropped-image-switch{
