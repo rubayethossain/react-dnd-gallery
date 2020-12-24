@@ -1,3 +1,4 @@
+import Button from "components/Button";
 import { useContext, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { changeDroppedPhoto } from "redux/Media/media.action";
@@ -40,12 +41,16 @@ function ImagesList({ mediaImages, dispatch }) {
 
   const changePhotoToolbox = (
     <div className="change-toolbox">
-      <button type="button" onClick={confirmChanges}>
+      <Button type="button" onClick={confirmChanges}>
         Confirm
-      </button>
-      <button type="button" onClick={() => setChangePhoto(null)}>
+      </Button>
+      <Button
+        btnType="secondary"
+        type="button"
+        onClick={() => setChangePhoto(null)}
+      >
         Cancel
-      </button>
+      </Button>
     </div>
   );
 
