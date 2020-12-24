@@ -23,9 +23,9 @@ const Image = forwardRef((props, ref) => {
   return (
     <img
       ref={ref}
-      className="list-image"
       alt=""
       {...props}
+      className={`list-image ${props.className}`}
       style={filterStyle}
     />
   );

@@ -13,11 +13,14 @@
 	padding: 0 20px 20px;
 }
 
+.media-list > li {
+	margin-bottom: 10px;
+}
+
 .list-image{
 	width: 175px;
 	height: 250px;
 	object-fit: cover;
-	margin-bottom: 10px;
 	border-radius: 5px;
 	border: 2px solid #DDE2E8;
 }
@@ -98,4 +101,8 @@
 .drop-message > p{
 	color: #4A5257;
 	font-size: 18px;
+}
+
+.selected-image{
+	border: 2px solid #35AEF2;
 }
