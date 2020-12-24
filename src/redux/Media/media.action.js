@@ -4,6 +4,7 @@ import {
   SORT_IMAGES,
   DEL_DROP_IMAGE,
   SET_FILTER,
+  CHANGE_PHOTO,
 } from "./media.types";
 
 // Add images to media.
@@ -32,4 +33,10 @@ export const applyFilterToDroppedImage = (imgId, filter) => ({
   type: SET_FILTER,
   payload: imgId,
   filter,
+});
+
+export const changeDroppedPhoto = (changePhotoId, newImage) => ({
+  type: CHANGE_PHOTO,
+  payload: changePhotoId,
+  newImage,
 });

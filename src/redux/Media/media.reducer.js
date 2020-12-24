@@ -1,9 +1,11 @@
+import { act } from "@testing-library/react";
 import {
   IMAGES,
   DROPPED_IMAGES,
   SORT_IMAGES,
   DEL_DROP_IMAGE,
   SET_FILTER,
+  CHANGE_PHOTO,
 } from "./media.types";
 
 const INITIAL_MEDIAS = {
@@ -65,6 +67,23 @@ const reducer = (state = INITIAL_MEDIAS, action) => {
         ...state,
         droppedImages: updatedDroppedImages,
       };
+
+    case CHANGE_PHOTO: {
+      const images = [...state.droppedImages];
+
+      const changePhotoIndex = images.findIndex(
+        (img) => img.id === action.payload
+      );
+
+      if (changePhotoIndex < 0) return state;
+
+      images.splice(changePhotoIndex, 1, action.newImage);
+
+      return {
+        ...state,
+        droppedImages: images,
+      };
+    }
 
     default:
       return state;
