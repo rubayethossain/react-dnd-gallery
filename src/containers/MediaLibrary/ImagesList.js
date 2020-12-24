@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { changeDroppedPhoto } from "redux/Media/media.action";
 import { fetchImagesToMedia } from "redux/Media/media.thunk";
 import ChangePhotoContext from "./context/ChangePhotoContext";
 import ImageDrag from "./ImageDrag";
@@ -22,9 +23,26 @@ function ImagesList({ mediaImages, dispatch }) {
     }
   };
 
+  const confirmChanges = () => {
+    dispatch(
+      changeDroppedPhoto(changePhoto.id, {
+        ...selectedPhoto,
+        invert: 0,
+        opacity: 0,
+        brightness: 0,
+        contrast: 0,
+      })
+    );
+
+    setSelectedPhoto({});
+    setChangePhoto(null);
+  };
+
   const changePhotoToolbox = (
     <div className="change-toolbox">
-      <button type="button">Confirm</button>
+      <button type="button" onClick={confirmChanges}>
+        Confirm
+      </button>
       <button type="button" onClick={() => setChangePhoto(null)}>
         Cancel
       </button>
@@ -36,7 +54,10 @@ function ImagesList({ mediaImages, dispatch }) {
       <p className="list-title">Media Panel</p>
       <ul className="media-list">
         {mediaImages.map(({ img, id }, key) => (
-          <li key={key} onClick={handlePhotoSelection.bind(null, { img, id })}>
+          <li
+            key={key}
+            onClick={handlePhotoSelection.bind(null, { src: img, id })}
+          >
             <ImageDrag
               src={img}
               id={id}
